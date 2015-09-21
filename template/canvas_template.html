@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <script>
+      window.onload = function() {
+        var canvas = document.getElementById('myCanvas');
+        var c = canvas.getContext('2d');
+
+        // begin()开始，fill() 或者 stroke() 进行绘制
+
+        // // 绘制实心矩形
+        // c.fillStyle = '#ffff00';
+        // c.fillRect(0, 0, 50, 50);
+        // c.clearRect(10, 10, 10, 10);
+
+        // // 绘制空心矩形
+        // c.strokeStyle = '#ff0000';
+        // c.strokeRect(0, 0, 50, 50);
+
+        // 绘制线段
+        // c.beginPath();
+        // c.moveTo(0, 0);
+        // c.lineTo(100, 100);
+        // c.lineTo(100, 200);
+        // c.stroke();
+        // c.beginPath();
+        // c.moveTo(100, 200);
+        // c.lineTo(100, 300);
+        // c.stroke();
+
+        // // 绘制圆形
+        // c.fillStyle = '#ff0000';
+        // c.beginPath();
+        // c.arc(50, 50, 50, 0, Math.PI * 2, true);
+        // c.closePath();
+        // c.fill();
+
+        // // translate方法，改变原点位置
+        // c.fillRect(0, 0, 50, 50);
+        // c.translate(50, 50);
+        // c.fillRect(0, 0, 50, 50);
+
+        // // rotate方法，旋转画布
+        // c.rotate(Math.PI / 180 * 50);
+        // c.fillRect(0, 0, 50, 50);
+
+      };
+    </script>
+  </head>
+  
+  <body>
+    <canvas id='myCanvas' width='500' height='250' style='background-color:white; position:relative; left:10px; top:10px'>
+      this browser doesn't support html5.
+    </canvas>
+  </body>
+</html>
