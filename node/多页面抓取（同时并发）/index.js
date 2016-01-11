@@ -33,13 +33,11 @@ function analyze(page) {
 }
 
 // 抓取网页内容
-function fetchUrls(urls, ep) {
-  urls.forEach(function(item) {
-    superagent.get(item)
-      .end(function (err, res) {
-        ep.emit('topic_html', res.text);
-      });
-  });
+function fetchUrl(url, ep) {
+  superagent.get(url)
+    .end(function (err, res) {
+      ep.emit('topic_html', res.text);
+    });
 }
 
 
@@ -66,7 +64,10 @@ app.get('/', function (req, res, next) {
     res.send(pages);
   });
 
-  fetchUrls(urls, ep);
+  urls.forEach(function(item) {
+    fetchUrl(item, ep);
+  });
+
 });
 
 app.listen(3000, function () {
