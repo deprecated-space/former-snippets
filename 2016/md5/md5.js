@@ -23,8 +23,8 @@ function md5_vm_test()
 }   
 function core_md5(x, len)   
 {   
-  x[len >> 5] |= 0x80 < < ((len) % 32);   
-  x[(((len + 64) >>> 9) < < 4) + 14] = len;   
+  x[len >> 5] |= 0x80 << ((len) % 32);   
+  x[(((len + 64) >>> 9) << 4) + 14] = len;   
  
   var a =  1732584193;   
   var b = -271733879;   
@@ -153,7 +153,7 @@ function safe_add(x, y)
 {   
   var lsw = (x & 0xFFFF) + (y & 0xFFFF);   
   var msw = (x >> 16) + (y >> 16) + (lsw >> 16);   
-  return (msw < < 16) | (lsw & 0xFFFF);   
+  return (msw << 16) | (lsw & 0xFFFF);   
 }   
 function bit_rol(num, cnt)   
 {   
@@ -162,9 +162,9 @@ function bit_rol(num, cnt)
 function str2binl(str)   
 {   
   var bin = Array();   
-  var mask = (1 < < chrsz) - 1;   
+  var mask = (1 << chrsz) - 1;   
   for(var i = 0; i < str.length * chrsz; i += chrsz)   
-    bin[i>>5] |= (str.charCodeAt(i / chrsz) & mask) < < (i%32);   
+    bin[i>>5] |= (str.charCodeAt(i / chrsz) & mask) << (i%32);   
   return bin;   
 }   
 function binl2str(bin)   
@@ -192,8 +192,8 @@ function binl2b64(binarray)
   var str = "";   
   for(var i = 0; i < binarray.length * 4; i += 3)   
   {   
-    var triplet = (((binarray[i   >> 2] >> 8 * ( i   %4)) & 0xFF) < < 16)   
-                | (((binarray[i+1 >> 2] >> 8 * ((i+1)%4)) & 0xFF) < < 8 )   
+    var triplet = (((binarray[i   >> 2] >> 8 * ( i   %4)) & 0xFF) << 16)   
+                | (((binarray[i+1 >> 2] >> 8 * ((i+1)%4)) & 0xFF) << 8 )   
                 |  ((binarray[i+2 >> 2] >> 8 * ((i+2)%4)) & 0xFF);   
     for(var j = 0; j < 4; j++)   
     {   
@@ -227,8 +227,8 @@ function md5_vm_test()
 }
 function core_md5(x, len)
 {
-  x[len >> 5] |= 0x80 < < ((len) % 32);
-  x[(((len + 64) >>> 9) < < 4) + 14] = len;
+  x[len >> 5] |= 0x80 << ((len) % 32);
+  x[(((len + 64) >>> 9) << 4) + 14] = len;
  
   var a =  1732584193;
   var b = -271733879;
@@ -356,7 +356,7 @@ function safe_add(x, y)
 {
   var lsw = (x & 0xFFFF) + (y & 0xFFFF);
   var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-  return (msw < < 16) | (lsw & 0xFFFF);
+  return (msw << 16) | (lsw & 0xFFFF);
 }
 function bit_rol(num, cnt)
 {
@@ -365,9 +365,9 @@ function bit_rol(num, cnt)
 function str2binl(str)
 {
   var bin = Array();
-  var mask = (1 < < chrsz) - 1;
+  var mask = (1 << chrsz) - 1;
   for(var i = 0; i < str.length * chrsz; i += chrsz)
-    bin[i>>5] |= (str.charCodeAt(i / chrsz) & mask) < < (i%32);
+    bin[i>>5] |= (str.charCodeAt(i / chrsz) & mask) << (i%32);
   return bin;
 }
 function binl2str(bin)
@@ -395,8 +395,8 @@ function binl2b64(binarray)
   var str = "";
   for(var i = 0; i < binarray.length * 4; i += 3)
   {
-    var triplet = (((binarray[i   >> 2] >> 8 * ( i   %4)) & 0xFF) < < 16)
-                | (((binarray[i+1 >> 2] >> 8 * ((i+1)%4)) & 0xFF) < < 8 )
+    var triplet = (((binarray[i   >> 2] >> 8 * ( i   %4)) & 0xFF) << 16)
+                | (((binarray[i+1 >> 2] >> 8 * ((i+1)%4)) & 0xFF) << 8 )
                 |  ((binarray[i+2 >> 2] >> 8 * ((i+2)%4)) & 0xFF);
     for(var j = 0; j < 4; j++)
     {
