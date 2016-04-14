@@ -1,0 +1,139 @@
+<script type="text/javascript">
+  // array to number
+  function aton(a) {
+    var sum = 0;
+    for (var i = a.length; i--; ) {
+      var index = 3 - i
+        , item = a[i];
+
+      (item & 1) && (sum |= (1 << (index << 1)));
+      (item & 2) && (sum |= (1 << ((index << 1) | 1))); 
+    }
+
+    return sum;
+  }
+
+
+  // number to array
+  function ntoa(n) {
+    var a = [];
+
+    for (var i = 0; i < 4; i++) {
+      var num = 0
+        , index = 3 - i;
+
+      num |= n & (1 << (index << 1)) ? 1 : 0;
+      num |= n & ((1 << ((index << 1) | 1))) ? 2 : 0;
+      a.push(num);
+    }
+
+    return a;
+  }
+
+
+  function checkIfSafe(sNum, yNum) {
+    return sNum === 0 || sNum >= yNum;
+  }
+
+
+  var hash = [];
+  for (var i = 0; i <= 240; i++)
+    hash[i] = [];
+
+  var ans = [];
+
+
+  // pos == 1 表示船在左边
+  // pos == 0 表示船在右边
+  function dfs(num, pos) {
+
+    if (hash[num][pos])
+      return;
+
+    hash[num][pos] = true;
+
+    var a = ntoa(num);
+
+    var l_sNum = a[0];
+    var l_yNum = a[1];
+    var r_sNum = a[2];
+    var r_yNum = a[3];
+
+    pos ? a.push('left') : a.push('right');
+
+    ans.push(a);  
+
+    if (num === 15) { // [0, 0, 3, 3]
+      // 打印答案
+      ans.concat().forEach(function(item) {
+        console.log(item.toString() + '->');
+      });
+
+      console.log('------------------');
+
+      // backtrace
+      hash[num][pos] = false;
+      ans.pop();
+
+      return;
+    }
+
+    // left to right
+    if (pos) {
+      for (var i = 0; i <= l_yNum; i++) // 妖怪过河数
+        for (var j = 0; j <= l_sNum; j++) {  // 僧人过河数
+
+          if (i + j === 0)
+            continue;
+
+          // 船上是否安全
+          if (!checkIfSafe(j, i))
+            continue;
+
+          // 左岸是否安全
+          if (!checkIfSafe(l_sNum - j, l_yNum - i))
+            continue;
+
+          // 右岸是否安全
+          if (!checkIfSafe(r_sNum + j, r_yNum + i))
+            continue;
+
+          if (i + j > 2)
+            break;
+
+          // 过河后的数据
+          var b = [l_sNum - j, l_yNum - i, r_sNum + j, r_yNum + i];
+          dfs(aton(b), 0);
+        }
+    } else {  // right to left
+      for (var i = 0; i <= r_yNum; i++)
+        for (var j = 0; j <= r_sNum; j++) { 
+
+          if (i + j === 0)
+            continue;
+
+          if (!checkIfSafe(j, i))
+            continue;
+
+          if (!checkIfSafe(r_sNum - j, r_yNum - i))
+            continue;
+
+          if (!checkIfSafe(l_sNum + j, l_yNum + i))
+            continue;
+
+          if (i + j > 2)
+            break;
+
+          // 过河后的数据
+          var b = [l_sNum + j, l_yNum + i, r_sNum - j, r_yNum - i];
+          dfs(aton(b), 1);
+        }
+    }
+
+    // backtrace
+    hash[num][pos] = false;
+    ans.pop();
+  }
+
+  dfs(aton([3, 3, 0, 0]), 1);
+</script>
