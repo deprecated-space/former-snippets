@@ -1,5 +1,6 @@
 // 一个网页嵌套了一个 iframe
-// 我们需要监听鼠标移除该 iframe 的事件
+// 我们需要监听鼠标移出该 iframe 的事件
+// 这段代码应在该 iframe 指向的 src 页面中
 // @see http://stackoverflow.com/questions/923299/how-can-i-detect-when-the-mouse-leaves-the-window
 
 
