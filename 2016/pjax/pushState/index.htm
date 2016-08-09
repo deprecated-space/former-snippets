@@ -1,0 +1,60 @@
+<meta charset="utf-8">
+<ul>
+  <li><a href="javascript:;" name="a">Stephen Curry</a></li>
+  <li><a href="javascript:;" name="b">Jason Kidd</a></li>
+  <li><a href="javascript:;" name="c">Kobe Bryant</a></li>
+</ul>
+<p></p>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+  // http://localhost/history/index.htm?name=a
+  // add event listener
+  var lis = document.getElementsByTagName("a");
+  for (var i = 0, len = lis.length; i < len; i++) {
+    !function(i) {
+      var item = lis[i];
+      item.onclick = function() {
+        var val = item.name
+          , url = "?name=" + val;
+
+        // 每点击一次，插入一条历史记录，url 随之改变
+        history.pushState(null, "", url);
+
+        // ajax 局部更新
+        $.get("data.php", {name: val}, function(data) {
+          document.querySelector("p").innerHTML = data;
+        });
+      };
+    }(i);
+  }
+
+  // 监听浏览器后退、前进操作
+  window.onpopstate = function(e) {
+    var s = location.search;
+
+    if (!s)
+      return;
+
+    var url = location.href;
+    var val = s.substring(6);
+
+    $.get("data.php" + s, {name: val}, function(data) {
+      document.querySelector("p").innerHTML = data;
+    });
+  };
+
+  function changeUrl() {
+    var url = location.search ? location.search : "?name=a";
+    var val = location.search ? location.search.substring(6) : "a";
+
+    // 注意这里是 replaceState !
+    history.replaceState(null, "", url);
+
+    $.get("data.php", {name: val}, function(data) {
+      document.querySelector("p").innerHTML = data;
+    });
+  }
+
+  // onload
+  changeUrl();
+</script>

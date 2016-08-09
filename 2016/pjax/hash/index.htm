@@ -1,0 +1,45 @@
+<meta charset="utf-8">
+<ul>
+  <li><a href="javascript:;" name="a">Stephen Curry</a></li>
+  <li><a href="javascript:;" name="b">Jason Kidd</a></li>
+  <li><a href="javascript:;" name="c">Kobe Bryant</a></li>
+</ul>
+<p></p>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+  // add event listener
+  var lis = document.getElementsByTagName("a");
+  for (let i = 0, len = lis.length; i < len; i++) {
+    let item = lis[i];
+    item.onclick = function() {
+      let val = item.name;
+      let url = "#name=" + val;
+
+      location.href = url;
+
+      // ajax 局部更新
+      $.get("data.php", {name: val}, function(data) {
+        document.querySelector("p").innerHTML = data;
+      });
+    };
+  }
+
+  window.onhashchange = function() {
+    let hash = location.hash;
+    let val = hash.substring(6);
+
+    // ajax 局部更新
+    $.get("data.php", {name: val}, function(data) {
+      document.querySelector("p").innerHTML = data;
+    });
+  };
+
+  // start
+  !location.hash && (location.href = "#name=a");
+  var val = location.hash.substring(6);
+
+  // ajax 局部更新
+  $.get("data.php", {name: val}, function(data) {
+    document.querySelector("p").innerHTML = data;
+  });
+</script>
