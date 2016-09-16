@@ -1,0 +1,47 @@
+<meta charset="utf-8" />
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+  // promise 的每个实例单独维护一个异步请求
+  function fetchData1() {
+    var p = new Promise(function(resolve, reject) {
+      $.get('a.php', function(a) {
+        resolve(+a);
+      });
+    });
+
+    return p;
+  }
+
+  // 需要用到 fetchData1 的返回值
+  function fetchData2(a) {
+    var p = new Promise(function(resolve, reject) {
+      $.get('b.php', function(b) {
+        resolve(a + (+b));
+      });
+    });
+
+    return p;
+  }
+
+  // 需要用到 fetchData2 的返回值
+  function fetchData3(b) {
+    var p = new Promise(function(resolve, reject) {
+      $.get('c.php', function(c) {
+        resolve(b + (+c));
+      });
+    });
+
+    return p;
+  }
+
+  fetchData1()
+    .then(function(data) {
+      return fetchData2(data);
+    })
+    .then(function(data) {
+      return fetchData3(data);
+    })
+    .then(function(data) {
+      console.log(data);
+    });
+</script>
