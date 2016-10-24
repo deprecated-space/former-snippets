@@ -17,7 +17,7 @@ $cols = $data->colcount($sheet_index=0);
 
 // 打印每个单元格 value
 for ($i = 1; $i <= $rows; $i++)
-	for ($j = 1; $j <= $cols; $j++)
-		var_dump($data->val($i, $j));
+  for ($j = 1; $j <= $cols; $j++)
+    var_dump($data->val($i, $j));
 
 ?>
