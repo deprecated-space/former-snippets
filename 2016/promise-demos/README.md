@@ -2,7 +2,7 @@
 	- basic
 		- callback
 		- promise
-	- 
+	-
 
 
 # backup
@@ -23,7 +23,7 @@
 - [JavaScript Promise 告别异步乱嵌套](https://segmentfault.com/a/1190000002395343)（完善 basci ，增加 reject 代码）
 - [Promise MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#Methods)
 - [阮一峰](http://es6.ruanyifeng.com/#docs/promise)
-- [Promise 简介](https://blog.coding.net/blog/promise
+- [Promise 简介](https://blog.coding.net/blog/promise)
 - <https://wohugb.gitbooks.io/promise/content/>
 - <http://liubin.org/promises-book/>
 - <http://www.cnblogs.com/dojo-lzz/p/5495671.html>
