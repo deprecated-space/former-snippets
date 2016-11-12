@@ -1,0 +1,61 @@
+<meta charset="utf-8">
+<form>
+  <input type="input" name="name" />
+  <input type="file" name="file" id="file" />
+  <input type="button" value="submit" id="btn" />
+</form>
+<script type="text/javascript">
+  // 上传文件
+  document.querySelector("#btn").onclick = function() {
+    var formData = new FormData(document.querySelector("form"));
+    formData.append("age", 40);
+
+    // var formData = new FromData();
+    // var file = document.querySelector("#file").files[0];
+    // console.log(file);
+    // formData.append('file', file);
+
+    var xhr = new XMLHttpRequest();
+
+    // 高级浏览器可直接使用 xhr 的 load 事件
+    xhr.onload = function() {
+      console.log(xhr.responseText);
+    };
+
+    /*
+    xhr.onreadystatechange = function(e) {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // 30
+        console.log(xhr.responseText);
+      }
+    };
+    */
+
+    var url = "upload.php";
+    xhr.open("POST", url, true);
+
+    // 超时设定
+    xhr.timeout = 1000 * 10; // 10s
+    xhr.ontimeout = function() {
+      console.log('Request did not return in 10 seconds.');
+    };
+
+    /*
+    // 获取上传进度
+    // 不大好用啊
+    xhr.onprogress = function(e) {
+      console.log(e.lengthComputable);
+      if (e.lengthComputable) {
+        // ff 下是这两个属性？
+        console.log(e.loaded / e.total);
+        // console.log(e.position, e.totalSize)
+        // var progress = e.position / e.totalSize;
+        // console.log(progress);
+      }
+    };
+    */
+
+
+    xhr.send(formData);
+  };
+</script>

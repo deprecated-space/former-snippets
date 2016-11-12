@@ -1,0 +1,11 @@
+<form action="upload.php" method="post" enctype="multipart/form-data" target="hiddenIframe">
+  <input type="file" name="file" />
+  <input type="submit" value="submit" />
+</form>
+<iframe name="hiddenIframe" style="display: none"></iframe>
+<script type="text/javascript">
+  document.querySelector("iframe").onload = function() {
+    var responseText = this.contentDocument.body.textContent;
+    alert(responseText);
+  };
+</script>
