@@ -2,7 +2,7 @@
 
 文件上传最经典的形式。一年前写过一篇文章 [JavaScript，php文件上传简单实现](http://www.cnblogs.com/zichi/p/4610528.html)，简单描述了下。因为表单提交后，页面会跳到表单提交的地址去，所以可以用一个隐藏的 iframe，然后将 form 的 target 属性指向这个隐藏的 iframe。
 
-还有个问题，如何判断文件是否上传成功？[之前做过这个功能](http://huodong.2345.com/skin/)，把主要逻辑写在了后端 PHP 里，在前端定义好上传成功或者失败的回调方法，然后 PHP 里根据实际结果 die 出相应的 JavaScript 代码。（注意用 window.parent 才能调到前端页面的 JavaScript 方法，因为 target 属性指向了用于发送请求和接收响应的窗口名称，所以 die 出的 JavaScript 代码应该作用在 target 指向的 iframe）
+还有个问题，如何判断文件是否上传成功？[之前做过这个功能](http://huodong.2345.com/skin/)，把主要逻辑写在了后端 PHP 里（之前做这个功能的时候，将真实的 submit 按钮隐藏掉，然后前端展现一个假的按钮，当点击这个假按钮的时候，用 JavaScript 代码触发真实的提交按钮的 submit 方法，完成表单提交，但是低版本 IE 报错，应该认为这样做有安全隐患，最后是用一个按钮，也就是点击真实的 submit 按钮来解决），在前端定义好上传成功或者失败的回调方法，然后 PHP 里根据实际结果 die 出相应的 JavaScript 代码。（注意用 window.parent 才能调到前端页面的 JavaScript 方法，因为 target 属性指向了用于发送请求和接收响应的窗口名称，所以 die 出的 JavaScript 代码应该作用在 target 指向的 iframe）
 
 ```php
 if ($isOk) // 成功上传
