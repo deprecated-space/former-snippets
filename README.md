@@ -8,4 +8,4 @@
 - [the solution for cross-river problem](https://github.com/hanzichi/practice/blob/master/2016/cross-river-problem/cross-river-solution.htm)
 - [simple pjax demo](https://github.com/hanzichi/practice/tree/master/2016/pjax)
 - [promise demos](https://github.com/hanzichi/practice/tree/master/2016/promise-demos)
-- [监听整个 iframe 的 mouseout 事件 demo](https://github.com/hanzichi/practice/tree/master/2016/document-mouseout-listener)
+- [监听整个 iframe 的 mouseout 事件](https://github.com/hanzichi/practice/tree/master/2016/document-mouseout-listener)
