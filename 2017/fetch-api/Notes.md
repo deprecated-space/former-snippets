@@ -1,0 +1,7 @@
+- [fetch - 阮一峰](http://javascript.ruanyifeng.com/bom/ajax.html#toc27)
+- [Javascript window.fetch API](http://www.webhek.com/javascript-fetch-api)
+- [fetch API](https://davidwalsh.name/fetch)
+- [传统 Ajax 已死，Fetch 永生](https://github.com/camsong/blog/issues/2)
+- [【翻译】这个 API 很 “迷人”——(新的 Fetch API)](https://www.w3ctech.com/topic/854)
+- [深入浅出 Fetch API](http://wwsun.github.io/posts/fetch-api-intro.html)
+- [Fetch API](http://www.zcfy.cc/article/fetch-api-434.html)

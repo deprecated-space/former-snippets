@@ -1,0 +1,19 @@
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script>
+  let url = 'data.php';
+  // $.get(url, (data) => {
+  //   console.log(data);
+  // });
+
+  // fetch 方法返回 Promise 对象
+  fetch(url).then((res) => {
+    // 请求成功，得到 res 对象，调用 res 对象的 json 方法并返回
+    // return res.text();
+    return res.json();
+  }).then((jsonData) => {
+    console.log(typeof jsonData)
+  }).catch(() => {
+    console.log('出错了')
+  })
+
+</script>
