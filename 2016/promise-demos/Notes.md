@@ -1,3 +1,0 @@
-Promise 的主要用法就是将各个异步操作封装成好多 Promise，而一个 Promise 只处理一个异步逻辑。最后将各个 Promise 用链式调用写法串联，在这样处理下，如果异步逻辑之间前后关系很重的话，你也不需要层层嵌套，只需要把每个异步逻辑封装成 Promise 链式调用就可以了。
-
-promise 模式在任何时刻都处于以下三种状态之一：未完成（unfulfilled）、已完成（resolved）和拒绝（rejected）。以 CommonJS Promise/A 标准为例，promise 对象上的 then 方法负责添加针对已完成和拒绝状态下的处理函数。then 方法会返回另一个 promise 对象，以便于形成 promise 管道，这种返回 promise 对象的方式能够支持开发人员把异步操作串联起来，如 then(resolvedHandler, rejectedHandler); 。resolvedHandler 回调函数在 promise 对象进入完成状态时会触发，并传递结果；rejectedHandler 函数会在拒绝状态下调用
